@@ -90,8 +90,5 @@ boxes.forEach((box,index)=>{
     })
 })
 reset.addEventListener('click',()=>{
-    board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
-    boxes.forEach(box=>{
-        box.innerText=""
-    })
+    location.reload()
 })
