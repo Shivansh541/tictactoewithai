@@ -3,7 +3,7 @@ reset=document.querySelector('#reset')
 info=document.querySelector('.info')
 
 board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
-
+gameover=false
 const winPatterns = [
     [0, 1, 2],
     [3, 4, 5],
@@ -63,6 +63,7 @@ const AIturn = ()=>{
     boxes[bestMove].innerText = 'X'
     if(checkWinner('X')){
         info.innerText = "AI Wins"
+        gameover = true
     }
     else if(isBoardFull()){
         info.innerText = "It's a Tie"
@@ -70,16 +71,17 @@ const AIturn = ()=>{
 }
 boxes.forEach((box,index)=>{
     box.addEventListener('click',()=>{
-        if(board[index]==' '){
+        if(board[index]==' ' && gameover==false){
             box.innerText = 'O'
             board[index] = 'O'
             if(checkWinner('O')){
                 info.innerText = "Human Wins"
+                gameover = true
             }
             else if(isBoardFull()){
                 info.innerText = "It's a Tie"
             }
-            else{
+            else if(gameover==false){
                 console.log("AI is thinking")
                 AIturn()
                 console.log("Your turn")
